@@ -65,7 +65,7 @@ unset(LT_AGE)
 # Enable generators like Xcode and Visual Studio to place projects in folders.
 set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
 
-include("${AOM_ROOT}/build/cmake/aom_configure.cmake")
+include(./build_util/cmake/aom_configure.cmake)
 if(CONFIG_THREE_PASS)
   include("${AOM_ROOT}/common/ivf_dec.cmake")
 endif()
@@ -75,9 +75,9 @@ include(./aom_ports/aom_ports.cmake)
 include(./aom_scale/aom_scale.cmake)
 include(./aom_util/aom_util.cmake)
 include(./av1/av1.cmake)
-include(./build/cmake/aom_install.cmake)
-include(./build/cmake/sanitizers.cmake)
-include(./build/cmake/util.cmake)
+include(./build_util/cmake/aom_install.cmake)
+include(./build_util/cmake/sanitizers.cmake)
+include(./build_util/cmake/util.cmake)
 include(./test/test.cmake)
 
 list(APPEND AOM_RTCD_SOURCES
@@ -90,7 +90,7 @@ list(APPEND AOM_RTCD_SOURCES
             "${AOM_ROOT}/aom_scale/aom_scale_rtcd.c"
             "${AOM_ROOT}/av1/common/av1_rtcd_defs.pl"
             "${AOM_ROOT}/av1/common/av1_rtcd.c"
-            "${AOM_ROOT}/build/cmake/rtcd.pl")
+            "${AOM_ROOT}/build_util/cmake/rtcd.pl")
 
 list(APPEND AOM_LIBWEBM_SOURCES
             "${AOM_ROOT}/third_party/libwebm/common/hdr_util.cc"
@@ -225,7 +225,7 @@ add_custom_command(OUTPUT "${AOM_CONFIG_DIR}/config/aom_version.h"
                            -DAOM_ROOT=${AOM_ROOT}
                            -DGIT_EXECUTABLE=${GIT_EXECUTABLE}
                            -DPERL_EXECUTABLE=${PERL_EXECUTABLE} -P
-                           "${AOM_ROOT}/build/cmake/version.cmake"
+                           "${AOM_ROOT}/build_util/cmake/version.cmake"
                    COMMENT "Writing aom_version.h"
                    VERBATIM)
 
@@ -235,7 +235,7 @@ add_custom_target(aom_version_check
                           -DAOM_ROOT=${AOM_ROOT}
                           -DGIT_EXECUTABLE=${GIT_EXECUTABLE}
                           -DPERL_EXECUTABLE=${PERL_EXECUTABLE} -P
-                          "${AOM_ROOT}/build/cmake/version.cmake"
+                          "${AOM_ROOT}/build_util/cmake/version.cmake"
                   COMMENT "Updating version info if necessary."
                   VERBATIM)
 
@@ -247,7 +247,7 @@ if(BUILD_SHARED_LIBS AND NOT MSVC)
                           -DAOM_ROOT=${AOM_ROOT}
                           -DGIT_EXECUTABLE=${GIT_EXECUTABLE}
                           -DPERL_EXECUTABLE=${PERL_EXECUTABLE} -P
-                          "${AOM_ROOT}/build/cmake/version.cmake")
+                          "${AOM_ROOT}/build_util/cmake/version.cmake")
 endif()
 
 add_dependencies(aom_version aom_version_check)

@@ -17,12 +17,12 @@ include(FindGit)
 include(FindPerl)
 include(FindThreads)
 
-include("${AOM_ROOT}/build/cmake/aom_config_defaults.cmake")
-include("${AOM_ROOT}/build/cmake/aom_experiment_deps.cmake")
-include("${AOM_ROOT}/build/cmake/aom_optimization.cmake")
-include("${AOM_ROOT}/build/cmake/compiler_flags.cmake")
-include("${AOM_ROOT}/build/cmake/compiler_tests.cmake")
-include("${AOM_ROOT}/build/cmake/util.cmake")
+include("${AOM_ROOT}/build_util/cmake/aom_config_defaults.cmake")
+include("${AOM_ROOT}/build_util/cmake/aom_experiment_deps.cmake")
+include("${AOM_ROOT}/build_util/cmake/aom_optimization.cmake")
+include("${AOM_ROOT}/build_util/cmake/compiler_flags.cmake")
+include("${AOM_ROOT}/build_util/cmake/compiler_tests.cmake")
+include("${AOM_ROOT}/build_util/cmake/util.cmake")
 
 if(DEFINED CONFIG_LOWBITDEPTH)
   message(WARNING "CONFIG_LOWBITDEPTH has been removed. \
@@ -255,7 +255,7 @@ if(NOT MSVC)
   aom_pop_var(CMAKE_REQUIRED_LIBRARIES)
 endif()
 
-include("${AOM_ROOT}/build/cmake/cpu.cmake")
+include("${AOM_ROOT}/build_util/cmake/cpu.cmake")
 
 if(ENABLE_CCACHE)
   set_compiler_launcher(ENABLE_CCACHE ccache)
@@ -404,7 +404,7 @@ set(aom_config_h_template "${AOM_CONFIG_DIR}/config/aom_config.h.cmake")
 execute_process(
   COMMAND ${CMAKE_COMMAND}
           -DAOM_CONFIG_DIR=${AOM_CONFIG_DIR} -DAOM_ROOT=${AOM_ROOT} -P
-          "${AOM_ROOT}/build/cmake/generate_aom_config_templates.cmake")
+          "${AOM_ROOT}/build_util/cmake/generate_aom_config_templates.cmake")
 
 # Generate aom_config.{asm,h}.
 configure_file("${aom_config_asm_template}"
@@ -418,7 +418,7 @@ if(NOT GIT_FOUND)
   message("--- Git missing, version will be read from CHANGELOG.")
 endif()
 
-configure_file("${AOM_ROOT}/build/cmake/aom_config.c.template"
+configure_file("${AOM_ROOT}/build_util/cmake/aom_config.c.template"
                "${AOM_CONFIG_DIR}/config/aom_config.c")
 
 # Find Perl and generate the RTCD sources.

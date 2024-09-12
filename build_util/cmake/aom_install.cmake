@@ -52,7 +52,7 @@ macro(setup_aom_install_targets)
               -DCONFIG_TFLITE=${CONFIG_TFLITE}
               -DHAVE_PTHREAD_H=${HAVE_PTHREAD_H}
               -P
-              "${AOM_ROOT}/build/cmake/pkg_config.cmake"
+              "${AOM_ROOT}/build_util/cmake/pkg_config.cmake"
       COMMENT "Writing aom.pc"
       VERBATIM)
 

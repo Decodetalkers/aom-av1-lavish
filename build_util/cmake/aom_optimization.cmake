@@ -13,7 +13,7 @@ if(AOM_BUILD_CMAKE_AOM_OPTIMIZATION_CMAKE_)
 endif() # AOM_BUILD_CMAKE_AOM_OPTIMIZATION_CMAKE_
 set(AOM_BUILD_CMAKE_AOM_OPTIMIZATION_CMAKE_ 1)
 
-include("${AOM_ROOT}/build/cmake/util.cmake")
+include("${AOM_ROOT}/build_util/cmake/util.cmake")
 
 # Translate $flag to one which MSVC understands, and write the new flag to the
 # variable named by $translated_flag (or unset it, when MSVC needs no flag).
@@ -243,7 +243,7 @@ endfunction()
 function(add_rtcd_build_step config output source symbol)
   add_custom_command(
     OUTPUT ${output}
-    COMMAND ${PERL_EXECUTABLE} ARGS "${AOM_ROOT}/build/cmake/rtcd.pl"
+    COMMAND ${PERL_EXECUTABLE} ARGS "${AOM_ROOT}/build_util/cmake/rtcd.pl"
             --arch=${AOM_TARGET_CPU}
             --sym=${symbol} ${AOM_RTCD_FLAGS}
             --config=${AOM_CONFIG_DIR}/config/aom_config.h ${config} > ${output}

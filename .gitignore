@@ -6,3 +6,4 @@ cmbuild
 .vscode
 .gitignore
 TAGS
+/build
