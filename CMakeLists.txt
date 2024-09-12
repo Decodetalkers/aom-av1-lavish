@@ -837,7 +837,7 @@ if(BUILD_SHARED_LIBS)
     endif()
   endif()
 
-  include("${AOM_ROOT}/build/cmake/exports.cmake")
+  include("${AOM_ROOT}/build_util/cmake/exports.cmake")
   setup_exports_target()
 endif()
 
@@ -924,7 +924,7 @@ add_custom_target(dist
                           -DAOM_DIST_INCLUDES="${AOM_INSTALL_INCS}"
                           -DAOM_DIST_LIBS=$<TARGET_FILE:aom>
                           -DENABLE_DOCS=${ENABLE_DOCS} -P
-                          "${AOM_ROOT}/build/cmake/dist.cmake"
+                          "${AOM_ROOT}/build_util/cmake/dist.cmake"
                   DEPENDS ${AOM_INSTALL_BINS} ${AOM_INSTALL_LIBS}
                           ${AOM_INSTALL_INCS} ${AOM_EXAMPLE_TARGETS}
                           ${AOM_TOOL_TARGETS})

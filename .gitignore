@@ -7,3 +7,4 @@ cmbuild
 .gitignore
 TAGS
 /build
+.cache
