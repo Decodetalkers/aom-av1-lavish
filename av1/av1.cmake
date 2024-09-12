@@ -505,6 +505,8 @@ endif()
 # Setup AV1 common/decoder/encoder targets. The libaom target must exist before
 # this function is called.
 function(setup_av1_targets)
+  include_directories("${CMAKE_CURRENT_LIST_DIR}/../common")
+  include_directories("${CMAKE_CURRENT_LIST_DIR}/../")
   add_library(aom_av1_common OBJECT ${AOM_AV1_COMMON_SOURCES})
   list(APPEND AOM_LIB_TARGETS aom_av1_common)
   target_sources(aom PRIVATE $<TARGET_OBJECTS:aom_av1_common>)

@@ -27,6 +27,8 @@ endif()
 
 project(AOM C CXX)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # GENERATED source property global visibility.
 if(POLICY CMP0118)
   cmake_policy(SET CMP0118 NEW)
@@ -67,16 +69,16 @@ include("${AOM_ROOT}/build/cmake/aom_configure.cmake")
 if(CONFIG_THREE_PASS)
   include("${AOM_ROOT}/common/ivf_dec.cmake")
 endif()
-include("${AOM_ROOT}/aom_dsp/aom_dsp.cmake")
-include("${AOM_ROOT}/aom_mem/aom_mem.cmake")
-include("${AOM_ROOT}/aom_ports/aom_ports.cmake")
-include("${AOM_ROOT}/aom_scale/aom_scale.cmake")
-include("${AOM_ROOT}/aom_util/aom_util.cmake")
-include("${AOM_ROOT}/av1/av1.cmake")
-include("${AOM_ROOT}/build/cmake/aom_install.cmake")
-include("${AOM_ROOT}/build/cmake/sanitizers.cmake")
-include("${AOM_ROOT}/build/cmake/util.cmake")
-include("${AOM_ROOT}/test/test.cmake")
+include(./aom_dsp/aom_dsp.cmake)
+include(./aom_mem/aom_mem.cmake)
+include(./aom_ports/aom_ports.cmake)
+include(./aom_scale/aom_scale.cmake)
+include(./aom_util/aom_util.cmake)
+include(./av1/av1.cmake)
+include(./build/cmake/aom_install.cmake)
+include(./build/cmake/sanitizers.cmake)
+include(./build/cmake/util.cmake)
+include(./test/test.cmake)
 
 list(APPEND AOM_RTCD_SOURCES
             "${AOM_CONFIG_DIR}/config/aom_dsp_rtcd.h"
@@ -342,6 +344,8 @@ endif()
 if(BUILD_SHARED_LIBS)
   set(AOM_LIB_TARGETS ${AOM_LIB_TARGETS} aom_static)
 endif()
+
+include_directories("${CMAKE_CURRENT_LIST_DIR}")
 
 # Setup dependencies.
 if(CONFIG_THREE_PASS)
